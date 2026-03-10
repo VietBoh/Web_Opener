@@ -14,21 +14,6 @@ Clear-Host
 )
 
 $CopyRight = "                  Made by DevCore"
-
-function Write-AboutMe {
-    Clear-Host
-    [String[]]$AboutMe = @(
-        "Hi! is me DevCore`n",
-        "Second project hehe :))",
-        "This is a tool for opening web pages using PowerShell :))"
-    )
-
-    ForEach($Me in $AboutMe.ToCharArray()){
-        Write-Host $Me -NoNewline -ForegroundColor Cyan
-        Start-Sleep -Milliseconds 50
-    }
-    Pause
-}
 # Initialization Script
 
 # Main Script
