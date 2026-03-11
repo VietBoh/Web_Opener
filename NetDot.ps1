@@ -32,7 +32,8 @@ While($true){
     if($URL -in @('Quit','Q','q')){ break }
     
     if([string]::IsNullOrWhiteSpace($URL)){
-        Write-Warning "`nURLs cannot be left blank."
+        "`n"
+        Write-Warning "URLs cannot be left blank."
         Start-Sleep -Seconds 3
     }else{
         Write-Host "Checking the website" -ForegroundColor DarkGray
