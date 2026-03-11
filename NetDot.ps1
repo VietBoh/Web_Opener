@@ -14,21 +14,6 @@ Clear-Host
 )
 
 $CopyRight = "                  Made by DevCore"
-
-function Write-AboutMe {
-    Clear-Host
-    [String[]]$AboutMe = @(
-        "Hi! is me DevCore`n",
-        "Second project hehe :))",
-        "This is a tool for opening web pages using PowerShell :))"
-    )
-
-    ForEach($Me in $AboutMe.ToCharArray()){
-        Write-Host $Me -NoNewline -ForegroundColor Cyan
-        Start-Sleep -Milliseconds 50
-    }
-    Pause
-}
 # Initialization Script
 
 # Main Script
@@ -51,13 +36,14 @@ While($true){
         Start-Sleep -Seconds 3
     }else{
         Write-Host "Checking the website" -ForegroundColor DarkGray
-        $ping = ping "$URL"
+        $ping = (Test-NetConnection "$URL" -Port 443).TcpTestSucceeded
 
-        if($ping -match "^(Ping request could not)"){
+        if($ping -eq $false){
             Write-Warning "$URL does not exist"
             Pause
             Continue
         }else{
+            Write-Host "Checking Completed" -ForegroundColor DarkGray
             for($i = 0; $i -le 100; $i++){
                 Write-Progress -Activity "Opening the $URL. Please wait." -Status "$i%" -PercentComplete $i
                 Start-Sleep -Milliseconds 20
